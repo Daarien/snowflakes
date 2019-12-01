@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
 // import SockJS from "sockjs-client";
-import SF, { Wrapper } from "./SF";
+import SF, { Wrapper, StaticSF } from "./SF";
 
 // const ws = new SockJS("");
 // ws.onopen = () => {
@@ -16,7 +16,7 @@ import SF, { Wrapper } from "./SF";
 //   console.log("WS connection is closed");
 // };
 
-const COUNT = 35;
+const COUNT = 30;
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
@@ -47,9 +47,10 @@ function App() {
 
   return (
     <AppContainer ref={appContainer}>
+      {/* <StaticSF /> */}
       {flakes.map(i => {
         const rotatingSpeed = getRandomInt(10, 20);
-        const delay = getRandomInt(1, 20);
+        const delay = getRandomInt(1, 30);
         return (
           <SF
             key={i}
