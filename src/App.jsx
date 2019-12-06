@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import SockJS from "sockjs-client";
+import { Client } from "@stomp/stompjs";
 
 import BSF from "./BackgroundSF";
 import UserSF from "./UserSF";
@@ -32,11 +33,62 @@ const AppContainer = styled.div`
   overflow: hidden;
 `;
 
-function App() {
-  const containerSize = useRef({ height: 0, width: 0 });
-  const appContainer = useRef(undefined);
+function initClient() {
+  const client = new Client({ brockerUrl: "" });
+  client.webSocketFactory = () => new SockJS("/gs-guide-websocket");
+  return client;
+}
 
-  const wsClient = useRef(new SockJS("http://0.0.0.0:9999/echo"));
+function App() {
+  const wsClient = useRef(initClient());
+  wsClient.current.onConnect = frame => {
+    console.log("Connected: " + frame);
+
+    // wsClient.current.begin("/app/init");
+
+    wsClient.current.subscribe("/topic/init", msg => {
+      const message = JSON.parse(msg.body);
+      console.log("/topic/init msg => ", message);
+      if (message && message.tbCounterValues) {
+        setTbState(message.tbCounterValues);
+      }
+    });
+
+    wsClient.current.subscribe("/topic/greetings_events", msg => {
+      const message = JSON.parse(msg.body);
+      console.log("/topic/greetings_events => ", message);
+      if (message) {
+        const { userFullName, userTbType, lowActivityTbType } = message;
+
+        if (userFullName) {
+          setUser({ userFullName, userTbType });
+        }
+
+        if (lowActivityTbType) {
+          const x = lowActivityTbType;
+          let c = tbState[x];
+          const v = { [x]: c + 1 };
+          setTbState(prevState => ({
+            ...prevState,
+            ...v
+          }));
+        }
+      }
+    });
+  };
+
+  wsClient.current.debug = str => {
+    console.log(str);
+  };
+
+  useEffect(() => {
+    wsClient.current.activate();
+    const client = wsClient.current;
+    return () => client.deactivate();
+  }, []);
+
+  const containerSize = useRef({ height: 800, width: 1280 });
+  const appContainer = useRef(undefined);
 
   const [tbState, setTbState] = useState(initTbState);
   const [user, setUser] = useState({
@@ -44,53 +96,11 @@ function App() {
     userTbType: 0
   });
 
-  wsClient.current.onopen = () => {
-    console.log("WS connection is opened");
-    wsClient.current.send("test");
-  };
-  wsClient.current.onmessage = e => {
-    const message = JSON.parse(e.data);
-    // console.log("WS incoming message", message);
-
-    if (message) {
-      const {
-        tbCounterValues,
-        lowActivityTbType,
-        userFullName,
-        userTbType
-      } = message;
-
-      if (tbCounterValues) {
-        setTbState(tbCounterValues);
-      }
-      if (lowActivityTbType) {
-        console.log("TCL: App -> lowActivityTbType", lowActivityTbType);
-        let c = tbState[lowActivityTbType];
-        const v = { [lowActivityTbType]: c + 1 };
-        console.log("TCL: App -> v", v);
-        setTbState(prevState => ({
-          ...prevState,
-          ...v
-        }));
-      }
-
-      if (userFullName) {
-        setUser({ userFullName, userTbType });
-      }
-    }
-  };
-  wsClient.current.onclose = function() {
-    console.log("WS connection is closed");
-  };
-
   useEffect(() => {
     if (appContainer.current) {
       containerSize.current.height = appContainer.current.clientHeight;
       containerSize.current.width = appContainer.current.clientWidth;
     }
-
-    const ws = wsClient.current;
-    return () => ws.close();
   }, []);
 
   return (
