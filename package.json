@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@stomp/stompjs": "^5.4.2",
     "babel-plugin-macros": "^2.7.1",
     "babel-plugin-styled-components": "^1.10.6",
     "react": "^16.12.0",
