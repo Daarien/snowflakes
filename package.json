@@ -1,16 +1,23 @@
 {
   "name": "snowflakes",
-  "version": "0.1.0",
+  "version": "0.9.0",
   "private": true,
   "dependencies": {
     "@stomp/stompjs": "^5.4.2",
-    "babel-plugin-macros": "^2.7.1",
-    "babel-plugin-styled-components": "^1.10.6",
+    "core-js": "^3.6.0",
     "react": "^16.12.0",
+    "react-app-polyfill": "^1.0.5",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.2.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.3.0",
+    "regenerator-runtime": "^0.13.3",
     "sockjs-client": "^1.4.0",
-    "styled-components": "^4.4.1"
+    "styled-components": "^4.4.1",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "prettier": "^1.19.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -19,7 +26,12 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app"
+    ],
+    "rules": {
+      "react-hooks/exhaustive-deps": "off"
+    }
   },
   "browserslist": {
     "production": [
@@ -32,8 +44,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "typescript": "^3.7.2"
   }
 }
