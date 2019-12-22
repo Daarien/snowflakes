@@ -34,12 +34,15 @@ function getFallTime(screen) {
 }
 
 function moveAside(screen) {
-  const sfSize = screen === 'desktop' ? 400 : 250;
-  const snow_zone = screen === 'desktop' ? WINDOW_WIDTH * 0.6 : WINDOW_WIDTH;
-  const margin = Math.random() * snow_zone;
-  const max_margin = snow_zone - sfSize - 20;
-  if (margin > max_margin) {
-    return max_margin;
+  let sfSize = 250;
+  let snow_zone = WINDOW_WIDTH;
+  let max_margin = snow_zone - sfSize;
+  let margin = Math.floor(Math.random() * max_margin);
+  if (screen === 'desktop') {
+    sfSize = 400;
+    snow_zone = WINDOW_WIDTH * 0.67;
+    max_margin = snow_zone - sfSize;
+    margin = Math.floor(Math.random() * max_margin);
   }
   return margin;
 }
@@ -128,7 +131,7 @@ const NameSF = memo(({ user, left, duration, screen }) => {
             <div key={n}>{n}</div>
           ))}
         </UserName>
-        <img src={snowflake} alt="user sf" />
+        <img src={snowflake} alt="user-snow-flake-img" />
       </TheSnowFlake>
     );
   }
@@ -139,12 +142,12 @@ const NameSF = memo(({ user, left, duration, screen }) => {
 const SFContainer = styled.div`
   position: absolute;
   top: 0;
-  left: ${({ screen }) => (screen === 'desktop' ? '33%' : 0)};
+  left: 0;
   right: 0;
   height: ${({ screen }) => (screen === 'desktop' ? '100%' : '75%')};
   overflow: hidden;
   box-sizing: border-box;
-  /* border: 1px solid red; */
+  /* border: 1px solid red;  */
 `;
 
 const Wrapper = styled.div`
@@ -156,20 +159,13 @@ const Wrapper = styled.div`
 `;
 
 const TheSnowFlake = styled.div`
+  /* border: 1px solid red; */
   position: absolute;
   left: ${({ left }) => left}px;
   z-index: 999;
   animation: ${({ screen }) => (screen === 'desktop' ? fallingUserSfDesktop : fallingUserSfMobile)}
     ${({ duration }) => duration}ms linear;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+
   @media only screen and (max-width: 1024px) {
     margin-top: -18rem;
     img {
@@ -210,28 +206,23 @@ const TheSnowFlake = styled.div`
 `;
 
 const UserName = styled.div`
+  /* border: 1px solid blue; */
   position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   z-index: 555;
   color: #00251d;
+  text-align: center;
   text-shadow: 0 2px 4px white;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
   font-size: ${({ screen, long }) => getFontSize(screen, long)};
   line-height: ${({ screen }) => (screen === 'desktop' ? '2.2rem' : '22px')};
   font-weight: 500;
   div {
     padding: 0 5px;
+  }
+  @media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (min-device-height: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    font-size: 18px;
   }
 `;
 

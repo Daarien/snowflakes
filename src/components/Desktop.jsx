@@ -126,9 +126,6 @@ const GlobalStyle = createGlobalStyle`
   #root {
     height: 100%;
   }
-  body {
-    overflow-y: scroll;
-  }
   @media only screen and (max-height: 700px) {
     html {
       font-size: 10px;
@@ -166,7 +163,7 @@ const GlobalStyle = createGlobalStyle`
       font-size: 16px;
     }
     body {
-      min-width: 1366px;
+      min-width: 1500px;
     }
   }
 `;
@@ -181,7 +178,7 @@ const MainContainer = styled.div`
   @media only screen and (min-width: 1360px) and (max-height: 555px) {
     background-image: url(${({ stage }) => getStageBg(stage, 'long')});
   }
-  @media only screen and (min-width: 1910px) and (max-height: 700px) {
+  @media only screen and (min-width: 1910px) and (max-height: 777px) {
     background-image: url(${({ stage }) => getStageBg(stage, 'long')});
   }
   @media only screen and (min-width: 2900px) and (max-height: 1090px) {
