@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Flex, InTextAnchor } from '../custom';
+import { Flex, Anchor } from '../custom';
 import { getSberChatUrl } from '../../funx';
 
 import {
@@ -189,8 +189,8 @@ export default function IosView() {
           <section>
             <ListItem>
               Перейдите по ссылке{' '}
-              <InTextAnchor href="https://ds.emm/sberbank.ru">https://ds.emm/sberbank.ru</InTextAnchor> или
-              откройте Catalog на Home screen устройства.
+              <Anchor href="https://ds.emm/sberbank.ru">https://ds.emm/sberbank.ru</Anchor> или откройте
+              Catalog на Home screen устройства.
               <p>
                 <b>Важно!</b> Для установки самого Airwatch обратитесь в службу поддержки.
               </p>
@@ -237,6 +237,11 @@ const GreenArrow = styled.img`
   height: 40px;
   left: -10px;
   bottom: -30px;
+  @media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (min-device-height: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    height: 44px;
+    left: 10px;
+    bottom: -30px;
+  }
 `;
 const Toggler = styled.div`
   display: flex;
@@ -250,6 +255,15 @@ const Toggler = styled.div`
   img {
     width: 24px;
   }
+  @media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (min-device-height: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    span {
+      font-size: 22px;
+      margin-right: 12px;
+    }
+    img {
+      width: 40px;
+    }
+  }
 `;
 const Details = styled.div`
   max-height: ${({ open }) => (open ? '100%' : '0')};
@@ -261,14 +275,24 @@ const TextHeader = styled.div`
   text-align: center;
   font-size: 16px;
   font-weight: 600;
+  @media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (min-device-height: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    font-size: 18px;
+  }
 `;
 const ListItem = styled.div`
   margin: 0 0 8px 32px;
   font-size: 15px;
   color: #444;
+  @media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (min-device-height: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    margin: 0 0 8px 40px;
+    font-size: 20px;
+  }
 `;
 const ListItemImg = styled(BgImg)`
   height: 130px;
+  @media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (min-device-height: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    height: 280px;
+  }
 `;
 const BigDownloadButton = styled.div`
   display: flex;
@@ -300,5 +324,16 @@ const BigDownloadButton = styled.div`
   img {
     width: 24px;
     margin-right: 5px;
+  }
+  @media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (min-device-height: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    span {
+      font-size: 22px;
+      line-height: 26px;
+      font-weight: 500;
+    }
+    img {
+      width: 30px;
+      margin-right: 8px;
+    }
   }
 `;

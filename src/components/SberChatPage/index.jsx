@@ -55,6 +55,12 @@ const HeaderImg = styled(BgImg)`
   @media screen and (max-device-width: 420px) and (min-device-height: 720px) and (max-device-height: 740px) {
     height: 210px;
   }
+  @media screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+    height: 390px;
+  }
+  @media screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    height: 523px;
+  }
 `;
 const HeaderText = styled.div`
   position: absolute;
@@ -71,5 +77,27 @@ const HeaderText = styled.div`
     font-size: 14px;
     line-height: 1.3;
     width: 175px;
+  }
+  @media screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+    padding: 36px 20px;
+    div {
+      font-size: 28px;
+    }
+    p {
+      font-size: 20px;
+      line-height: 28px;
+      width: 250px;
+    }
+  }
+  @media screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    padding: 50px 30px;
+    div {
+      font-size: 40px;
+    }
+    p {
+      font-size: 30px;
+      line-height: 40px;
+      width: 380px;
+    }
   }
 `;

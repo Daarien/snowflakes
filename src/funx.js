@@ -6,15 +6,14 @@ export function getRandomInt(min, max) {
 
 export function getUserAgent() {
   const agent = window.navigator.userAgent;
-
+  if (agent.includes('iPad')) {
+    return 'iPad';
+  }
   if (agent.includes('Android')) {
     return 'Android';
   }
   if (agent.includes('iPhone')) {
     return 'iOS';
-  }
-  if (agent.includes('iPad')) {
-    return 'iPad';
   }
 
   return 'web';

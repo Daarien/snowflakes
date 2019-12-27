@@ -4,15 +4,6 @@ export const clear_blue_color = '#1284ff';
 
 export const Main = styled.main`
   padding: 0 16px 16px 16px;
-  /* @media screen and (max-device-width: 374px) {
-    border: 1px solid green;
-  } */
-  /* @media screen and (min-device-width: 375px) and (max-device-width: 420px) {
-    border: 1px solid blue;
-  } */
-  /* @media screen and (min-device-width: 421px) {
-    border: 1px solid red;
-  } */
   section {
     margin: 0 0 16px 0;
   }
@@ -35,16 +26,44 @@ export const Main = styled.main`
     font-size: 15px;
     font-weight: 600;
   }
+  /* @media screen and (max-device-width: 374px) {
+    border: 1px solid green;
+  } */
+  /* @media screen and (min-device-width: 375px) and (max-device-width: 420px) {
+    border: 1px solid blue;
+  } */
+  /* @media screen and (min-device-width: 421px) {
+    border: 1px solid red;
+  } */
+  @media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (min-device-height: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    /* border: 1px solid magenta; */
+    .step-header {
+      padding: 0 16px 0 40px;
+    }
+    .step-image {
+      width: 30px;
+      height: 30px;
+    }
+    .step-text {
+      font-size: 20px;
+    }
+  }
 `;
 
 export const Platform = styled.img`
   object-fit: contain;
   width: 72px;
+  @media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (min-device-height: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    width: 110px;
+  }
 `;
 
 export const PlatformLabel = styled.div`
   font-weight: 600;
   margin: 5px 0 15px 0;
+  @media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (min-device-height: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    font-size: 24px;
+  }
 `;
 
 export const ButtonsContainer = styled.div`
@@ -78,6 +97,15 @@ export const SmallButton = styled.div`
       padding: 0 12px;
     }
   }
+  @media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (min-device-height: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    a {
+      padding: 8px 30px;
+      font-size: 20px;
+      img {
+        width: 30px;
+      }
+    }
+  }
 `;
 
 export const SmallDownloadButton = styled(SmallButton)`
@@ -108,6 +136,9 @@ export const SmallButtonLabel = styled.span`
   @media screen and (min-device-width: 375px) {
     font-size: 12px;
   }
+  @media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (min-device-height: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    font-size: 18px;
+  }
 `;
 
 export const PlatformAwLogo = styled.div`
@@ -120,6 +151,14 @@ export const PlatformAwLogo = styled.div`
     bottom: 0;
     right: 0;
     width: 31px;
+  }
+  @media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (min-device-height: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    img.pale {
+      width: 110px;
+    }
+    img.aw {
+      width: 44px;
+    }
   }
 `;
 

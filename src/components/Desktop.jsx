@@ -1,12 +1,11 @@
 import React, { useEffect, useRef, useContext } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import { Link } from 'react-router-dom';
 
 import AppContext from '../context';
 import StarShineBg from './StarShineBg';
 import FallingSnowFlakesBg from './FallingSfBg';
 import UserSnowFlake from './UserSf';
-import { InTextAnchor, SemiBold } from './custom';
+import { Anchor, SemiBold } from './custom';
 
 import logoSberImg from '../img/logo-sber.png';
 import promMobileQRCodeImg from '../img/qr-codes/qr-prom-mobile.png';
@@ -86,17 +85,16 @@ export default function Main() {
             <div>Новым годом!</div>
           </Greeting>
           <Text>
-            <div>Приближается самый волшебный и красивый</div>
-            <div>праздник &mdash; Новый год! Давайте сделаем</div>
-            <div>его ещё чудеснее и украсим нашу виртуальную</div>
-            <div>ёлку персональными снежинками.</div>
+            <div>Приближается самый красивый зимний</div>
+            <div>праздник &mdash; Новый год! Давайте добавим</div>
+            <div>в него немного волшебства и украсим</div>
+            <div>ёлку снежинками со своим именем.</div>
             <SendGreetText>
               <div>
-                Отправьте поздравление на{' '}
-                <InTextAnchor href="mailto:sber@sberbank.ru">sber@sberbank.ru</InTextAnchor>
+                Отправьте поздравление на <Anchor href="mailto:sber@sberbank.ru">sber@sberbank.ru</Anchor>
               </div>
               <div>
-                или в СберЧате чат-боту <SemiBold>Sber2020</SemiBold>.
+                или в СберЧате на <SemiBold>Sber2020</SemiBold>.
               </div>
             </SendGreetText>
           </Text>

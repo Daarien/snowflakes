@@ -7,7 +7,7 @@ export const Flex = styled.div`
   flex-direction: ${({ direction }) => direction || 'row'};
 `;
 
-export const InTextAnchor = styled.a`
+export const Anchor = styled.a`
   color: inherit;
   font-size: inherit;
   font-weight: 500;

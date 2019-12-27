@@ -53,7 +53,7 @@ export default memo(({ user, screen }) => {
   const FALL_TIME = useRef(13000);
 
   // const FALL_TIME = getFallTime(screen);
-  const DELAY = screen === 'desktop' ? 5000 : 6000;
+  const DELAY = 5000;
 
   useEffect(() => {
     FALL_TIME.current = getFallTime(screen);
@@ -142,12 +142,12 @@ const NameSF = memo(({ user, left, duration, screen }) => {
 const SFContainer = styled.div`
   position: absolute;
   top: 0;
-  left: 0;
+  left: ${({ screen }) => (screen === 'desktop' ? '35rem' : 0)};
   right: 0;
   height: ${({ screen }) => (screen === 'desktop' ? '100%' : '75%')};
   overflow: hidden;
   box-sizing: border-box;
-  /* border: 1px solid red;  */
+  /* border: 1px solid red; */
 `;
 
 const Wrapper = styled.div`

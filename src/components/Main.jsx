@@ -11,15 +11,8 @@ import DesktopPage from './Desktop';
 import MobilePage from './Mobile';
 import SberChatPage from './SberChatPage';
 
-function initClient() {
-  try {
-    const client = new Client({ brockerUrl: '' });
-    client.webSocketFactory = () => new SockJS('/gs-guide-websocket');
-    return client;
-  } catch (error) {
-    console.error('TCL: initClient -> error', error);
-  }
-}
+const client = new Client({ brockerUrl: '' });
+client.webSocketFactory = () => new SockJS('/gs-guide-websocket');
 
 const initNames = [
   // 'Матвийчук Сергей Анатольевич',
@@ -52,7 +45,7 @@ export default function MainPage() {
     console.debug('TCL: stack length -> ', stack.current.length);
   }
 
-  const wsClient = useRef(initClient());
+  const wsClient = useRef(client);
   wsClient.current.onConnect = frame => {
     console.debug('Connected: ' + frame);
     setConnected(true);
@@ -118,11 +111,11 @@ export default function MainPage() {
       clearInterval(stackInterval.current);
       stackInterval.current = null;
     } else {
-      const l = stack.current.length;
-      if (l) {
+      const { length } = stack.current;
+      if (length) {
         stackInterval.current = setInterval(() => {
           const key = uuid();
-          const randomIndex = getRandomInt(0, l);
+          const randomIndex = getRandomInt(0, length);
           setUser({ key, name: stack.current[randomIndex] });
           // setVoicesCount(count => count + 1);
           // if (stage < 5) {
